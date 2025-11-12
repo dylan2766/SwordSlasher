@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class slash : MonoBehaviour
+public class spawner : MonoBehaviour
 {
+    public GameObject slash;
     public Vector2 mousePos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,10 +16,15 @@ public class slash : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mousePos;
+        
+        spawnSlash();
+    }
 
-        if (Input.GetMouseButtonUp(0))
+    public void spawnSlash()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            Destroy(gameObject);
+            Instantiate(slash, mousePos, Quaternion.identity);
         }
     }
 }
